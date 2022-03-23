@@ -5,10 +5,10 @@ $q = $db->prepare("SELECT * FROM staff");
 if($q && $q->execute()) {
 
     $result = $q->get_result();
-    while($row = $result->fetch_assoc()) {
-        $staffId = $row['id'];
-        $firstName = $row['firstName'];
-        $lastName = $row['lastName'];
+    while($staff = $result->fetch_assoc()) {
+        $staffId = $staff['id'];
+        $firstName = $staff['firstName'];
+        $lastName = $staff['lastName'];
         echo "lekarz $firstName $lastName<br>";
         $q = $db->prepare("SELECT * FROM appointment WHERE staff_id = ?");
         $q->bind_param("i", $staffId);
@@ -18,9 +18,9 @@ if($q && $q->execute()) {
                 $appointmentId = $appointment['id'];
                 $appointmentDate = $appointment['date'];
                 $appointmentTimestamp = strtotime($appointmentDate);
-                echo"<button style=\"margin=10px\">";
+                echo"<a href=\"appointment.php\" style=\"margin=10px; display:block\">";
                 echo date("j.m H:i", $appointmentTimestamp);
-                echo"</button>";
+                echo"</a>";
             }
 echo "<br>";
             
