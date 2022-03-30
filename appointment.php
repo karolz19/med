@@ -21,16 +21,5 @@ if(isset($_REQUEST['firstName']) && isset($_REQUEST['lastName'])
     $q->bind_param("ii", $patientId, $appointmentId);
     $q->execute();
     echo "Zapisano na wizytę!";
-} else { 
-    ?>
-        <form action="appointment.php">
-        Imię: <input type="text" name="firstName">
-        Nazwisko: <input type="text" name="lastName">
-        Telefon: <input type="text" name="phone">
-        <input type="hidden" value="<?php echo $appointmentId ?>" name="id">
-        <input type="submit" value="Zapisz wizytę">
-        </form>
-    <?php
-
-}
+} 
 ?>
