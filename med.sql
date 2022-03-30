@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 30 Mar 2022, 11:15
+-- Czas generowania: 30 Mar 2022, 11:45
 -- Wersja serwera: 10.4.22-MariaDB
 -- Wersja PHP: 8.0.15
 
@@ -61,7 +61,8 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`id`, `firstName`, `lastName`, `phone`, `pesel`) VALUES
-(1, 'xd', 'xd', '213742069', '');
+(1, 'xd', 'xd', '213742069', ''),
+(2, 'wojciech', 'sliskapipka', '2137420691', '12345678912');
 
 -- --------------------------------------------------------
 
@@ -147,7 +148,7 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT dla tabeli `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `patientappointment`
