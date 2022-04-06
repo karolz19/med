@@ -12,7 +12,7 @@ $staffResult = $q->get_result();
         
         <?php 
         while($staffRow = $staffResult->fetch_assoc()) {
-            $StaffID = $staffRow['id'];
+            $staffId = $staffRow['id'];
             $staffFirstName = $staffRow['firstName'];
             $staffLastName = $staffRow['lastName']; 
 
@@ -22,4 +22,26 @@ $staffResult = $q->get_result();
         
 
     </select>
+    <label for="startTime">Data początkowa:</label>
+    <input type="datetime-local" name="startTime" id="startTime"><br>
+    <label for="endTime">Data końcowa:</label>
+    <input type="datetime-local" name="endTime" id="endTime"><br>
+    <label for="interval">Interwał (min):</label>
+    <input type="number" name="interval" id="interval" value="15"><br>
+    <input type="submit" value="Rozpisz wizyty">
 </form>
+<?php
+if(isset($_REQUEST['staffId']) && isset($_REQUEST['startTime']) && isset($_REQUEST['endTime']) && isset($_REQUEST['interval'])) {
+    $staffId = $_REQUEST['staffId'];
+    $startTime = strtotime($_REQUEST['startTime']);
+    $endTime = strtotime($_REQUEST['endTime']);
+    $interval = $_REQUEST['interval']*60;
+    $q = $db->prepare("INSERT INTO appointment VALUES (NULL, ?, ?)");
+    for($i = $startTime; $i < $endTime; $i += $interval) {
+        $date = date("Y-m-d H:i:s", $i);
+        $q->bind_param("is", $staffId, $date);
+        $q->execute();
+    }
+}
+
+?>
