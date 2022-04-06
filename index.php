@@ -18,7 +18,7 @@ if($q && $q->execute()) {
                 $appointmentId = $appointment['id'];
                 $appointmentDate = $appointment['date'];
                 $appointmentTimestamp = strtotime($appointmentDate);
-                echo"<a href=\"appointment.php?id=$appointmentId\" style=\"margin=10px; display:block\">";
+                echo"<a href=\"patientlogin.php?id=$appointmentId\" style=\"margin=10px; display:block\">";
                 echo date("j.m H:i", $appointmentTimestamp);
                 echo"</a>";
             }
